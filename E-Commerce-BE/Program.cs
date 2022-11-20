@@ -22,6 +22,13 @@ var context = scope.ServiceProvider.GetRequiredService<StoreContext>();
 
 var logger = scope.ServiceProvider.GetRequiredService<ILogger<Program>>();
 
+builder.Services.AddCors();
+
+app.UseCors(opt =>
+{
+    opt.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin();
+});
+
 try
 {
     context.Database.Migrate();
