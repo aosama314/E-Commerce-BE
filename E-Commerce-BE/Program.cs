@@ -1,4 +1,5 @@
 using E_Commerce_BE.Data;
+using E_Commerce_BE.Middleware;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -39,6 +40,8 @@ catch (Exception ex)
 {
     logger.LogError(ex, "Problem migrating data!");
 }
+
+app.UseMiddleware<ExceptionMiddleware>();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
